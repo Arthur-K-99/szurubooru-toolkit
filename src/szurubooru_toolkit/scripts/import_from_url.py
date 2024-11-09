@@ -140,6 +140,13 @@ def main(urls: list = [], input_file: str = '', add_tags: list = [], verbose: bo
         logger.info(f'Downloading posts from URLs {urls}...')
     params = [f'--range={config.import_from_url["range"]}', '--write-metadata']
 
+    # Adding Sankaku credentials if available
+    if 'sankaku' in config.credentials:
+        sankaku_creds = config.credentials['sankaku']
+        if 'username' in sankaku_creds and 'password' in sankaku_creds:
+            params += [f'-u={sankaku_creds["username"]}']
+            params += [f'-p={sankaku_creds["password"]}']
+
     if config.import_from_url['cookies']:
         params += [f'--cookies={config.import_from_url["cookies"]}']
 
