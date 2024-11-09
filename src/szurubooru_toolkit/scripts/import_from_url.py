@@ -171,7 +171,7 @@ def main(urls: list = [], input_file: str = '', add_tags: list = [], verbose: bo
         leave=False,
         disable=hide_progress,
     ):
-        with open(file + '.json') as f:
+        with open(file + '.json', encoding='utf-8') as f:
             metadata = json.load(f)
             try:
                 site = get_site(metadata['file_url'])
